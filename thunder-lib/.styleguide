@@ -1,0 +1,38 @@
+cppHeaderFileInclude {
+  \.h$
+  \.hpp$
+  \.inc$
+}
+
+cppSrcFileInclude {
+  \.cpp$
+}
+
+modifiableFileExclude {
+  vendordeps/
+  gradle/
+}
+
+generatedFileExclude {
+  gradlew
+  .wpilib/
+  src/main/deploy/
+  \.png$
+  2023-chargedup.json
+}
+
+includeOtherLibs {
+  ^HAL/
+  ^cameraserver/
+  ^cscore
+  ^ctre/
+  ^frc/
+  ^frc2/
+  ^networktables/
+  ^ntcore
+  ^opencv2/
+  ^support/
+  ^units/
+  ^vision/
+  ^wpi/
+}

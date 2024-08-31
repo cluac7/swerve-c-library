@@ -1,0 +1,26 @@
+variables:
+  THUNDER_LIB_PATH: "./thunder-lib"
+
+linter:
+  stage: build
+  needs: []
+  image: wpilib/ubuntu-base:22.04
+  before_script:
+    - apt-get update
+    - apt-get install -y clang clang-tools parallel jq
+    - | 
+      wget https://apt.llvm.org/llvm.sh &&
+      chmod +x llvm.sh &&
+      sudo ./llvm.sh 17 &&
+      apt-get install -y clang-format-17 clang-tidy-17 &&
+      ln -s /usr/bin/clang-tidy-17 /usr/bin/clang-tidy &&
+      ln -s /usr/bin/clang-format-17 /usr/bin/clang-format
+    - |
+      export EXCLUDE_LINT="src/TalonFXEncoder.cpp src/sim/TalonFXEncoderSim.cpp include/thunder/TalonFXEncoder.h include/thunder/sim/TalonFXEncoderSim.h"
+  script:
+    - git fetch && git branch main origin/main
+    - git submodule update --init --recursive
+    - ./gradlew installRoboRioToolchain
+    - ./gradlew generateVsCodeConfig
+    - bash $THUNDER_LIB_PATH/linter.sh
+    - git --no-pager diff --exit-code HEAD

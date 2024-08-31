@@ -1,0 +1,35 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [23]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Scheduler": "Scheduler"
+    }
+  },
+  "NetworkTables": {
+    "Persistent Values": {
+      "open": false
+    }
+  },
+  "NetworkTables Info": {
+    "Clients": {
+      "open": true
+    },
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "open": true
+    },
+    "visible": true
+  }
+}
