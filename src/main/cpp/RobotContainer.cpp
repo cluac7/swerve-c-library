@@ -98,3 +98,15 @@ auto RobotContainer::GetAutonomousCommand() -> frc2::CommandPtr {  // NOLINT
 }
 
 auto RobotContainer::LogSystemData() -> void {}
+
+// return frc2::RunCommand(
+//            [=] { m_drive.Drive(drive_forward, true); }, {&m_drive}
+// )
+//     .WithTimeout(0.85_s)
+//     .AndThen(m_shooter.SpinUpCmd().AndThen(
+//         frc2::cmd::Parallel(
+//             std::move(m_shooter.ShootCmd()),
+//             std::move(m_intake.ShootCmd())
+//         )
+//             .WithTimeout(2_s)
+//     ));
