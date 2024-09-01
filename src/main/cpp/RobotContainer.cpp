@@ -72,29 +72,6 @@ void RobotContainer::ConfigureBindings() {
 }
 
 auto RobotContainer::GetAutonomousCommand() -> frc2::CommandPtr {  // NOLINT
-    frc::ChassisSpeeds drive_forward {
-        constants::autonomous::kSpeed, 0_mps, 0_tps
-    };
-    if (!constants::autonomous::kUseAuto) return frc2::cmd::Print("we no auto");
-    return frc2::cmd::Wait(constants::autonomous::kWaitPeriod)
-        .AndThen(frc2::RunCommand(
-                     [&, drive_forward] { m_drive.Drive(drive_forward, true); }, {&m_drive}
-        )
-                     .WithTimeout(
-                         static_cast<units::meter_t>(
-                             constants::autonomous::kDistance
-                         ) /
-                         static_cast<units::meters_per_second_t>(
-                             constants::autonomous::kSpeed
-                         )
-                     )
-                     .AndThen(m_shooter.SpinUpCmd().AndThen(
-                         frc2::cmd::Parallel(
-                             std::move(m_shooter.ShootCmd()),
-                             std::move(m_intake.ShootCmd())
-                         )
-                             .WithTimeout(2_s)
-                     )));
 }
 
 auto RobotContainer::LogSystemData() -> void {}
